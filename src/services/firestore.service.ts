@@ -19,8 +19,7 @@ public getUsers(): Promise<boolean> {
 @Injectable({
     providedIn: 'root'
 }) // Para que llame a esta clase desde cualquier componente
- // Para que llame a esta clase desde cualquier componente
- // Para que llame a esta clase desde cualquier componente
+
 
 
 export class FirestoreService {
