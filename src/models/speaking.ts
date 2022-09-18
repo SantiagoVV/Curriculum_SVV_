@@ -1,9 +1,9 @@
-export interface idiom {
+export interface speaking {
     language: string,
     level: string
 }
 
 
 export interface idioms {
-    name_list: idiom[]
+    name_list: speaking[]
 }
