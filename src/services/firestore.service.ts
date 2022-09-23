@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection, updateDoc, onSnapshot, where, doc, getDoc, getDocs, query, QuerySnapshot } from '@angular/fire/firestore';
-
+import { Firestore, collection, collectionData, updateDoc, onSnapshot, where, doc, getDoc, getDocs, query, QuerySnapshot, addDoc } from '@angular/fire/firestore';
+import { Education } from 'src/models/education';
+import { Observable } from 'rxjs';
 
 /*
 public getUsers(): Promise<boolean> {
@@ -14,6 +15,22 @@ public getUsers(): Promise<boolean> {
     });
 }
 
+
+getObjectUser(doc: any): User {
+        const user: User = {
+            id: doc.id,
+            name: doc.data().name,
+            email: doc.data().email,
+            apps: doc.data().apps,
+            role: doc.data().role ? doc.data().role : 'user',
+            isDarkMode: doc.data().isDarkMode ? doc.data().isDarkMode : false,
+            language: doc.data().language ? doc.data().language : 'es'
+        }
+        return user;
+    }
+
+
+
 */
 
 @Injectable({
@@ -24,23 +41,47 @@ public getUsers(): Promise<boolean> {
 
 export class FirestoreService {
 
+    education_list: Education[] | undefined;
 
     constructor(private firestore: Firestore){
         
     }
 
-    getEducation(): Promise<boolean> {
-        return new Promise((resolve) => {
+    getObjectEducation(doc: any): Education {
+        const education: Education = {
+            name: doc.data().name,
+            place : doc.data().place,
+            date : doc.data().date,
+        }
+        return education;
+    }
 
-            getDocs(collection(this.firestore, 'education')).then((QuerySnapshot: any) => {
+    getEducation(): Promise<any> {
+        this.education_list = [];
+        return new Promise((resolve) => {
+          
+            getDocs(collection(this.firestore, 'education')).then((QuerySnapshot: any) => {  
                 QuerySnapshot.forEach((doc: any) => {
-                    console.log("Documento: ", doc);
+                    console.log("a",doc.data());
+                    this.education_list.push(this.getObjectEducation(doc));    
                 });
+                resolve(this.education_list);
             });
-            resolve(true);
+            
         });
 
         
     }
+/*
+    getEducation(): Observable<Education[]>{
+        const educationRef = collection(this.firestore, 'educations');
+        console.log(collectionData(educationRef, { idField: 'id' }) as Observable<Education[]>);
+        return collectionData(educationRef, { idField: 'id' }) as Observable<Education[]>;
+    }
+*/
 
+    addEducation(education: Education) {
+        const educationRef = collection(this.firestore, 'educations');
+        return addDoc(educationRef, education);
+      }
 }

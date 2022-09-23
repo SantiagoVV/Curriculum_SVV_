@@ -7,6 +7,7 @@ import { Experience } from "src/models/experience";
 import { language } from "src/models/language";
 import { speaking } from "src/models/speaking";
 import { Firestore } from "firebase/firestore";
+import { FormControl, FormGroup } from "@angular/forms";
 
 
 @Component({
@@ -14,14 +15,26 @@ import { Firestore } from "firebase/firestore";
     templateUrl: './llamada_firestore.html',
     styleUrls: []
   })
-
+// LLamadaFirestore
   export class Llamada_firestore implements OnInit{
 
-    constructor(private firestoreService: FirestoreService) { }
+    formulario: FormGroup;
+    constructor(private firestoreService: FirestoreService) {
+      this.formulario = new FormGroup({
+        name: new FormControl(),
+        place: new FormControl(),
+        date: new FormControl()
+      })
+     }
 
     ngOnInit(): void { }
 
-    saveTutorial(): void {
-        this.firestoreService.getEducation();
+    educationData(){
+
+      this.firestoreService.getEducation().then((educationData: any)=> {
+      console.log("[LlamadaFirestore]: ", educationData);
+      
+      });
+      
     }
   }

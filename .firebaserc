@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "cv-svv"
+  },
+  "targets": {
+    "cv-svv": {
+      "hosting": {
+        "Curriculum_SVV_": [
+          "cv-svv"
+        ]
+      }
+    }
+  }
+}

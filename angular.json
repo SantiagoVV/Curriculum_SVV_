@@ -94,6 +94,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "Curriculum_SVV_:build:production",
+            "firebaseProject": "cv-svv",
+            "firebaseHostingSite": "cv-svv"
+          }
         }
       }
     }
