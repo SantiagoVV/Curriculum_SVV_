@@ -1,9 +1,9 @@
-export interface language {
+export interface Language {
     icon: string,
     title: string
 }
 
 
-export interface languages_list {
-    list: language[],
+export interface Languages_list {
+    list: Language[],
 }

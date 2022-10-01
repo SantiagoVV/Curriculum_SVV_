@@ -1,0 +1,1 @@
+export const SET_EDUCATION_LIST = 'SET_EDUCATION_LIST';

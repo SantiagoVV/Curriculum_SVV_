@@ -4,8 +4,8 @@ import { FirestoreService } from "src/services/firestore.service";
 
 import { Education } from "src/models/education";
 import { Experience } from "src/models/experience";
-import { language } from "src/models/language";
-import { speaking } from "src/models/speaking";
+import { Language, Languages_list } from "src/models/language";
+import { Speaking } from "src/models/speaking";
 import { Firestore } from "firebase/firestore";
 import { FormControl, FormGroup } from "@angular/forms";
 
@@ -18,23 +18,33 @@ import { FormControl, FormGroup } from "@angular/forms";
 // LLamadaFirestore
   export class Llamada_firestore implements OnInit{
 
-    formulario: FormGroup;
-    constructor(private firestoreService: FirestoreService) {
-      this.formulario = new FormGroup({
-        name: new FormControl(),
-        place: new FormControl(),
-        date: new FormControl()
-      })
-     }
+    listaEducation: Education[] = [];
+    listaLanguage: Languages_list[] = [];
+    lista : any;
+
+    constructor(private firestoreService: FirestoreService) { }
 
     ngOnInit(): void { }
 
     educationData(){
 
       this.firestoreService.getEducation().then((educationData: any)=> {
-      console.log("[LlamadaFirestore]: ", educationData);
-      
+        console.log("[LlamadaFirestore]: ", educationData);
+        this.printListEducation();
+        this.printListLanguage();
       });
+
       
+      
+    }
+
+    printListEducation(){
+      this.lista = this.firestoreService.getExperience();
+      console.log("print: ", this.listaEducation);
+    }
+    
+    printListLanguage(){
+      this.listaLanguage = this.firestoreService.getListLanguage();
+      console.log("print: ", this.listaEducation[0].name);
     }
   }

@@ -9,9 +9,11 @@ import { AppComponent } from './app.component';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { Llamada_firestore } from './llamada_firestore/llamada_firestore';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { environment } from '../environments/environment';
-
+import { experience } from './state/experience/reducer';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,19 @@ import { environment } from '../environments/environment';
     FormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
+    StoreModule.forRoot({
+      experience,
+
+    },
+        {
+            runtimeChecks: {
+                strictStateImmutability: false,
+                strictActionImmutability: false
+            }
+        }),
+    StoreDevtoolsModule.instrument({
+        //  logOnly: environment.production
+    }),
 
 
   ],

@@ -1,6 +1,21 @@
 <div>
     <button (click)="educationData()"class="btn btn-success">Submit</button>
+
+    <ul>
+        <li *ngFor = "let prenda of listaEducation; let i = index">
+            {{prenda.name}}
+        </li>
+
+        <li *ngFor = "let prenda of listaLanguage; let i = index">
+            {{this.listaLanguage[0].list[i].title}}
+
+            
+        </li>
+    </ul>
 </div>
 
 
-<!-- https://www.youtube.com/watch?v=t_YSrxj0wGY -->
+<!-- 
+    this.language_list[0].list[0].title
+    https://www.youtube.com/watch?v=t_YSrxj0wGY 
+-->
