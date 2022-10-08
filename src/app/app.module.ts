@@ -14,34 +14,42 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { environment } from '../environments/environment';
 import { experience } from './state/experience/reducer';
+import { language } from './state/language/reducer';
+import { education } from './state/education/reducer';
+import { speaking } from './state/speaking/reducer';
+
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    Llamada_firestore
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideFirestore(() => getFirestore()),
-    StoreModule.forRoot({
-      experience,
+    declarations: [
+        AppComponent,
+        Llamada_firestore
+    ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        provideFirebaseApp(() => initializeApp(environment.firebase)),
+        provideFirestore(() => getFirestore()),
+        StoreModule.forRoot({
+            experience,
+            language,
+            education,
+            speaking
 
-    },
-        {
-            runtimeChecks: {
-                strictStateImmutability: false,
-                strictActionImmutability: false
-            }
+
+        },
+            {
+                runtimeChecks: {
+                    strictStateImmutability: false,
+                    strictActionImmutability: false
+                }
+            }),
+        StoreDevtoolsModule.instrument({
+            //  logOnly: environment.production
         }),
-    StoreDevtoolsModule.instrument({
-        //  logOnly: environment.production
-    }),
 
 
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

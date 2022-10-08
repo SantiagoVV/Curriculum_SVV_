@@ -40,11 +40,17 @@ import { FormControl, FormGroup } from "@angular/forms";
 
     printListEducation(){
       this.lista = this.firestoreService.getExperience();
+      this.lista = this.firestoreService.getEducation();
+      this.lista = this.firestoreService.getLanguage();
+      this.lista = this.firestoreService.getSpeaking();
       console.log("print: ", this.listaEducation);
     }
     
     printListLanguage(){
-      this.listaLanguage = this.firestoreService.getListLanguage();
+      this.lista = this.firestoreService.getExperience();
+      this.lista = this.firestoreService.getEducation();
+      this.lista = this.firestoreService.getLanguage();
+      this.lista = this.firestoreService.getSpeaking();
       console.log("print: ", this.listaEducation[0].name);
     }
   }
